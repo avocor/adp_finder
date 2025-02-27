@@ -1,38 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CAMERA" />
 
+    <!-- 存取 Storage 權限 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="29"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="29"/>
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
+
+    <!-- 浮動視窗權限 -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <!-- 前台服務權限 -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
+    <!-- USB OTG 存取相關 -->
+    <uses-feature android:name="android.hardware.usb.host" />
+    <uses-permission android:name="android.permission.MANAGE_USB" />
+    <uses-permission android:name="android.permission.USB_PERMISSION" />
 
     <application
+        android:requestLegacyExternalStorage="true"
+        tools:targetApi="31"
         android:allowBackup="true"
         android:label="@string/app_name"
-        android:theme="@style/Theme.DialogActivity"
-        >
+        android:theme="@style/Theme.DialogActivity">
 
         <activity
             android:name=".MainActivity"
-            android:exported="true"
-            >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
 
-
-        <service android:name=".FloatingService"
+        <service
+            android:name=".FloatingService"
             android:exported="false"
-            android:foregroundServiceType="camera"
-            />
-        <activity android:name=".SettingsActivity"
+            android:foregroundServiceType="camera" />
+
+        <activity
+            android:name=".SettingsActivity"
             android:theme="@style/Theme.SettingsActivity"
             android:exported="true" />
-
     </application>
 
 </manifest>
