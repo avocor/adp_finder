@@ -2,8 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+
+<!--
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CAMERA" />
+    -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+
 
     <!-- 存取 Storage 權限 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="29"/>
@@ -40,8 +45,15 @@
         <service
             android:name=".FloatingService"
             android:exported="false"
-            android:foregroundServiceType="camera" />
+            android:foregroundServiceType="dataSync"
+             />
+        <!--
+        tools:ignore="ForegroundServicePermission"
+        android:foregroundServiceType="camera"
+        -->
+<!--
 
+-->
         <activity
             android:name=".SettingsActivity"
             android:theme="@style/Theme.SettingsActivity"
